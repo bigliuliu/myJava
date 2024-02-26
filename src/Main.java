@@ -42,29 +42,38 @@ public class Main {
 //        Integer[] array2 = {1,2,3};
 //        List<Integer> list3 = List.of(array2);
 //        System.out.println(list3);
-//        -----list的equal 方法练习 ------
-        List<Person> list = List.of(
-                new Person("Xiao", "Ming", 18),
-                new Person("Xiao", "Hong", 25),
-                new Person("Bob", "Smith", 20)
-        );
-        boolean exist = list.contains(new Person("Bob", "Smith", 20));
-        System.out.println(exist ? "测试成功!" : "测试失败!");
+//        ------------使用Map ----------
+        Student s = new Student("ll",56);
+        Map<String,Student> map = new HashMap<>();
+//        将ll 和Student 实例映射并关联
+        map.put("ll",s);
+        Student target = map.get("ll");
+//        System.out.println(target.name);
+//        System.out.println(target.score);
+//        System.out.println(map.get("oo"));
+        Map<String, Integer> map1 = new HashMap<>();
+        map1.put("apple1", 123);
+        map1.put("pear", 456);
+        map1.put("orang",12);
+        map1.put("apple2", 789);
+//        通过遍历key来遍历map
+        for (String key : map1.keySet()){
+            Integer value = map1.get(key);
+            System.out.println(key+"="+value);
+        }
+//        同时遍历key和value遍历map
+        for (Map.Entry<String,Integer> entry:map1.entrySet()){
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            System.out.println(key+"="+value);
+        }
     }
 }
-class Person {
-    String firstName;
-    String lastName;
-    int age;
-    public Person(String firstName, String lastName, int age) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-    }
-    public boolean equals(Object o){
-        if(o instanceof Person p){
-            return Objects.equals(this.firstName,p.firstName) && Objects.equals(this.lastName,p.lastName) && this.age == p.age;
-        }
-        return false;
+class Student{
+    public String name;
+    public int score;
+    public Student(String name,int score){
+        this.name = name;
+        this.score = score;
     }
 }
