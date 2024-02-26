@@ -30,6 +30,9 @@
     "assignee": "bigliuliu"
   }
 }]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d86478e3-1566-48b0-a110-3ca7bfb6bc7a" />
+  </component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -61,7 +64,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "git-widget-placeholder": "basicLearn",
     "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RunManager">
