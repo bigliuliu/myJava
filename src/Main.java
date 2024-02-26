@@ -42,75 +42,29 @@ public class Main {
 //        Integer[] array2 = {1,2,3};
 //        List<Integer> list3 = List.of(array2);
 //        System.out.println(list3);
-//-----------使用list的作业 1: list 有序-----------------
-//        // 构造从start到end的序列：
-//        final int start = 10;
-//        final int end = 20;
-//        List<Integer> list = new ArrayList<>();
-//        for (int i = start; i <= end; i++) {
-//            list.add(i);
-//        }
-//        // 随机删除List中的一个元素:
-//        int removed = list.remove((int) (Math.random() * list.size()));
-//        int found = findMissingNumber(start, end, list);
-//        System.out.println(list.toString());
-//        System.out.println("missing number: " + found);
-//        System.out.println(removed == found ? "测试成功" : "测试失败");
-        //-----------使用list的作业 1: list 整数无序-----------------
-        // 构造从start到end的序列：
-        final int start = 10;
-        final int end = 20;
-        List<Integer> list = new ArrayList<>();
-        for (int i = start; i <= end; i++) {
-            list.add(i);
-        }
-        // 洗牌算法shuffle可以随机交换List中的元素位置:
-        Collections.shuffle(list);
-        // 随机删除List中的一个元素:
-        int removed = list.remove((int) (Math.random() * list.size()));
-        int found = findMissingNumber(start, end, list);
-        System.out.println(list.toString());
-        System.out.println("missing number: " + found);
-        System.out.println(removed == found ? "测试成功" : "测试失败");
+//        -----list的equal 方法练习 ------
+        List<Person> list = List.of(
+                new Person("Xiao", "Ming", 18),
+                new Person("Xiao", "Hong", 25),
+                new Person("Bob", "Smith", 20)
+        );
+        boolean exist = list.contains(new Person("Bob", "Smith", 20));
+        System.out.println(exist ? "测试成功!" : "测试失败!");
     }
-//    static int findMissingNumber(int start, int end, List<Integer> list) {
-//        int missInt = 0;
-//        if (list.getFirst() != start){
-//            missInt = start;
-//        } else if (list.getLast() != end) {
-//            missInt = end;
-//        }
-//        else {
-////            for (Integer i: list){
-////                list.
-////            }
-//            for (int i = 0; i < list.size(); i++) {
-//                if(list.get(i+1)-list.get(i) != 1){
-//                    missInt = list.get(i)+1;
-//                }
-//            }
-//        }
-//        return missInt;
-//    }
-static int findMissingNumber(int start, int end, List<Integer> list) {
-        int missInt = 0;
-        List<Integer> list2 = new ArrayList<>(list);
-        list2.sort(Comparator.naturalOrder());
-        if (list2.getFirst() != start){
-            missInt = start;
-        } else if (list2.getLast() != end) {
-            missInt = end;
-        }
-        else {
-            for (int i = 0; i< list2.size(); i++) {
-                if(i!= list2.size()-1){
-                    if(list2.get(i+1)-list2.get(i) != 1){
-                        missInt = list2.get(i)+1;
-                    }
-                }
-            }
-        }
-    System.out.println(missInt+"result");
-    return missInt;
 }
+class Person {
+    String firstName;
+    String lastName;
+    int age;
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+    public boolean equals(Object o){
+        if(o instanceof Person p){
+            return Objects.equals(this.firstName,p.firstName) && Objects.equals(this.lastName,p.lastName) && this.age == p.age;
+        }
+        return false;
+    }
 }
