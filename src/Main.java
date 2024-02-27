@@ -104,47 +104,59 @@ public class Main {
 //        System.out.println(q.peek());
 //        System.out.println(q.peek());
 ////add,remove,element 是抛出异常，其他是返回false或者null
-//        -----------------尝试修复priorityQueue---------------------
-        Queue<User> q = new PriorityQueue<>(new UserComparator());
-        // 添加3个元素到队列:
-        q.offer(new User("Tom", "A10"));
-        q.offer(new User("Bob", "A1"));
-        q.offer(new User("Alice", "A2"));
-        q.offer(new User("Boss", "V1"));
-        System.out.println(q.poll()); // Boss/V1
-        System.out.println(q.poll()); // Bob/A1
-        System.out.println(q.poll()); // Alice/A2
-        System.out.println(q.poll()); // null,因为队列为空
-    }
-}
-class UserComparator implements Comparator<User> {
-    public int compare(User u1, User u2) {
-        if (u1.number.charAt(0) == u2.number.charAt(0)) {
-            // 如果两人的号都是A开头或者都是V开头,比较号的大小
-            //            return u1.number.compareTo(u2.number);
-//            fixed
-            int u1Int = Integer.parseInt(u1.number.substring(1));
-            int u2Int = Integer.parseInt(u1.number.substring(1));
-            return u1Int-u2Int;
-        }
-        if (u1.number.charAt(0) == 'V') {
-            // u1的号码是V开头,优先级高:
-            return -1;
+//        -----------------stack 课后作业---------------------
+//        请利用Stack把一个给定的整数转换为十六进制：
+        String hex = toHex(12500);
+        if (hex.equalsIgnoreCase("30D4")) {
+            System.out.println("测试通过");
         } else {
-            return 1;
+            System.out.println("测试失败");
         }
     }
-}
-class User {
-    public final String name;
-    public final String number;
-
-    public User(String name, String number) {
-        this.name = name;
-        this.number = number;
+    static String toHex(int n) {
+        Deque<String> deque = new LinkedList<>();
+        int chuNum = n/16;
+        int yuNum = n%16;
+        do{
+            if(yuNum<10){
+                deque.addFirst(Integer.toString(yuNum));
+            }
+            else {
+                switch (yuNum){
+                    case 10:
+                        deque.addFirst("A");
+                        break;
+                    case 11:
+                        deque.addFirst("B");
+                        break;
+                    case 12:
+                        deque.addFirst("C");
+                        break;
+                    case 13:
+                        deque.addFirst("D");
+                        break;
+                    case 14:
+                        deque.addFirst("E");
+                        break;
+                    case 15:
+                        deque.addFirst("F");
+                        break;
+                }
+            }
+            int t = chuNum;
+            chuNum = chuNum/16;
+            yuNum = t%16;
+            if (chuNum == 0){
+                deque.addFirst(Integer.toString(yuNum));
+            }
+        }while(chuNum >0);
+//        将队列转换为string
+        StringBuilder str = new StringBuilder();
+        for(String key: deque){
+            str.append(key);
+        }
+        System.out.println(deque+"-------------"+str);
+        return str.toString();
     }
 
-    public String toString() {
-        return name + "/" + number;
-    }
 }
