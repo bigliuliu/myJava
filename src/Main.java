@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.*;
+import java.time.DayOfWeek;
 import java.util.Objects;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -67,18 +68,29 @@ public class Main {
 //            Integer value = entry.getValue();
 //            System.out.println(key+"="+value);
 //        }
-        //        ------------Map练习题 ----------
-        List<Student> list = List.of(
-                new Student("Bob", 78),
-                new Student("Alice", 85),
-                new Student("Brush", 66),
-                new Student("Newton", 99));
-        var holder = new Students(list);
-        System.out.println(holder.getScore("Bob") == 78 ? "测试成功!" : "测试失败!");
-        System.out.println(holder.getScore("Alice") == 85 ? "测试成功!" : "测试失败!");
-        System.out.println(holder.getScore("Tom") == -1 ? "测试成功!" : "测试失败!");
+//        学习enumMap
+        Map<DayOfWeek, String> map = new EnumMap<>(DayOfWeek.class);
+        map.put(DayOfWeek.MONDAY, "星期一");
+        map.put(DayOfWeek.TUESDAY, "星期二");
+        map.put(DayOfWeek.WEDNESDAY, "星期三");
+        map.put(DayOfWeek.THURSDAY, "星期四");
+        map.put(DayOfWeek.FRIDAY, "星期五");
+        map.put(DayOfWeek.SATURDAY, "星期六");
+        map.put(DayOfWeek.SUNDAY, "星期日");
+        System.out.println(map);
+        System.out.println(map.get(DayOfWeek.MONDAY));
+//        学习Treemap
+        Map<String,Integer> mapTree = new TreeMap<>();
+        mapTree.put("a",1);
+        mapTree.put("c",3);
+        mapTree.put("b",2);
+        for (String key: mapTree.keySet()){
+            System.out.println(key);
+            System.out.println(mapTree.get(key));
+        }
     }
 }
+
 //class Student{
 //    public String name;
 //    public int score;
@@ -87,48 +99,4 @@ public class Main {
 //        this.score = score;
 //    }
 //}
-class Students {
-    List<Student> list;
-    Map<String, Integer> cache;
 
-    Students(List<Student> list) {
-        this.list = list;
-        cache = new HashMap<>();
-    }
-
-    /**
-     * 根据name查找score，找到返回score，未找到返回-1
-     */
-    int getScore(String name) {
-        for(Student ss :list){
-//            将初始化的student类的实例list遍历分别加入map中
-            this.cache.put(ss.name,ss.score);
-        }
-        // 先在Map中查找:
-        Integer score = this.cache.get(name);
-        if (score == null) {
-            // TODO:
-            return  -1;
-        }
-        return  score == null ? -1 : score.intValue();
-    }
-
-    Integer findInList(String name) {
-        for (var ss : this.list) {
-            if (ss.name.equals(name)) {
-                return ss.score;
-            }
-        }
-        return null;
-    }
-}
-
-class Student {
-    String name;
-    int score;
-
-    Student(String name, int score) {
-        this.name = name;
-        this.score = score;
-    }
-}
