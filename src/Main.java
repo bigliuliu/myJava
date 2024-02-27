@@ -83,59 +83,26 @@ public class Main {
 //        setTree.add("bb");
 //        setTree.add("ab");
 //        System.out.println(setTree);
-//        ------------set 作业-------------
-        List<Message> received = List.of(
-                new Message(2, "发工资了吗？"),
-                new Message(2, "发工资了吗？"),
-                new Message(1, "Hello!"),
-                new Message(1, "Hello!"),
-                new Message(3, "去哪吃饭？"),
-                new Message(3, "去哪吃饭？"),
-                new Message(4, "Bye")
-        );
-        List<Message> displayMessages = process(received);
-        for (Message message : displayMessages) {
-            System.out.println(message.text);
-        }
-    }
-
-    static List<Message> process(List<Message> received) {
-        // TODO: 按sequence去除重复消息
-//        ----自己的方法--------
-//        Set<String> messageSet = new HashSet<>();
-//        List<Message> result = new ArrayList<>();
-//        for (Message it : received){
-//            if(!messageSet.contains(it.text)){
-//                messageSet.add(it.text);
-//                result.add(it);
-//            }
-//
-//        }
-//        return result;
-//        ---------更健壮用treeset更合适---------
-        Set<Message> set = new TreeSet<>(new Comparator<Message>() {
-            @Override
-            public int compare(Message o1, Message o2) {
-//                if(o1.sequence < o2.sequence){
-//                    return -1;
-//                } else if (o1.sequence > o2.sequence) {
-//                    return 1;
-//                }
-//                return 0;
-                return o1.sequence - o2.sequence;
-            }
-        });
-        set.addAll(received);
-        return new ArrayList<Message>(set);
-    }
-    }
-
-
-class Message {
-    public final int sequence;
-    public final String text;
-    public Message(int sequence, String text) {
-        this.sequence = sequence;
-        this.text = text;
+//学习队列
+        Queue<String> q = new LinkedList<>();
+//        对列添加数据
+        q.offer("add");
+        q.offer("dfd");
+        q.add("ooo");
+//        队列取数据
+//        poll ,remove 取队列首元素并删除
+        System.out.println(q.poll());
+        System.out.println(q.poll());
+        System.out.println(q.poll());
+        System.out.println(q.poll());
+        q.offer("add");
+        q.offer("dfd");
+        q.add("ooo");
+//        peek ,element 取队列首元素不删除
+        System.out.println(q.peek());
+        System.out.println(q.peek());
+        System.out.println(q.peek());
+        System.out.println(q.peek());
+//add,remove,element 是抛出异常，其他是返回false或者null
     }
 }
