@@ -84,25 +84,67 @@ public class Main {
 //        setTree.add("ab");
 //        System.out.println(setTree);
 //学习队列
-        Queue<String> q = new LinkedList<>();
-//        对列添加数据
-        q.offer("add");
-        q.offer("dfd");
-        q.add("ooo");
-//        队列取数据
-//        poll ,remove 取队列首元素并删除
-        System.out.println(q.poll());
-        System.out.println(q.poll());
-        System.out.println(q.poll());
-        System.out.println(q.poll());
-        q.offer("add");
-        q.offer("dfd");
-        q.add("ooo");
-//        peek ,element 取队列首元素不删除
-        System.out.println(q.peek());
-        System.out.println(q.peek());
-        System.out.println(q.peek());
-        System.out.println(q.peek());
-//add,remove,element 是抛出异常，其他是返回false或者null
+//        Queue<String> q = new LinkedList<>();
+////        对列添加数据
+//        q.offer("add");
+//        q.offer("dfd");
+//        q.add("ooo");
+////        队列取数据
+////        poll ,remove 取队列首元素并删除
+//        System.out.println(q.poll());
+//        System.out.println(q.poll());
+//        System.out.println(q.poll());
+//        System.out.println(q.poll());
+//        q.offer("add");
+//        q.offer("dfd");
+//        q.add("ooo");
+////        peek ,element 取队列首元素不删除
+//        System.out.println(q.peek());
+//        System.out.println(q.peek());
+//        System.out.println(q.peek());
+//        System.out.println(q.peek());
+////add,remove,element 是抛出异常，其他是返回false或者null
+//        -----------------尝试修复priorityQueue---------------------
+        Queue<User> q = new PriorityQueue<>(new UserComparator());
+        // 添加3个元素到队列:
+        q.offer(new User("Tom", "A10"));
+        q.offer(new User("Bob", "A1"));
+        q.offer(new User("Alice", "A2"));
+        q.offer(new User("Boss", "V1"));
+        System.out.println(q.poll()); // Boss/V1
+        System.out.println(q.poll()); // Bob/A1
+        System.out.println(q.poll()); // Alice/A2
+        System.out.println(q.poll()); // null,因为队列为空
+    }
+}
+class UserComparator implements Comparator<User> {
+    public int compare(User u1, User u2) {
+        if (u1.number.charAt(0) == u2.number.charAt(0)) {
+            // 如果两人的号都是A开头或者都是V开头,比较号的大小
+            //            return u1.number.compareTo(u2.number);
+//            fixed
+            int u1Int = Integer.parseInt(u1.number.substring(1));
+            int u2Int = Integer.parseInt(u1.number.substring(1));
+            return u1Int-u2Int;
+        }
+        if (u1.number.charAt(0) == 'V') {
+            // u1的号码是V开头,优先级高:
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+}
+class User {
+    public final String name;
+    public final String number;
+
+    public User(String name, String number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public String toString() {
+        return name + "/" + number;
     }
 }
