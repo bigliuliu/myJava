@@ -114,48 +114,64 @@ public class Main {
         }
     }
     static String toHex(int n) {
+//        此处deque代表的是栈，因此变量名最好定义为stack
+//        Deque<String> stack = new LinkedList<>();
         Deque<String> deque = new LinkedList<>();
         int chuNum = n/16;
         int yuNum = n%16;
+        Map<Integer,String> map = Map.of(
+                10,"A",
+                11,"B",
+                12,"C",
+                13,"D",
+                14,"E",
+                15,"F"
+        );
         do{
             if(yuNum<10){
-                deque.addFirst(Integer.toString(yuNum));
+                deque.push(Integer.toString(yuNum));
             }
             else {
-                switch (yuNum){
-                    case 10:
-                        deque.addFirst("A");
-                        break;
-                    case 11:
-                        deque.addFirst("B");
-                        break;
-                    case 12:
-                        deque.addFirst("C");
-                        break;
-                    case 13:
-                        deque.addFirst("D");
-                        break;
-                    case 14:
-                        deque.addFirst("E");
-                        break;
-                    case 15:
-                        deque.addFirst("F");
-                        break;
-                }
+//                switch (yuNum){
+//                    case 10:
+//                        deque.push("A");
+//                        break;
+//                    case 11:
+//                        deque.push("B");
+//                        break;
+//                    case 12:
+//                        deque.push("C");
+//                        break;
+//                    case 13:
+//                        deque.push("D");
+//                        break;
+//                    case 14:
+//                        deque.push("E");
+//                        break;
+//                    case 15:
+//                        deque.push("F");
+//                        break;
+//                }
+//                可以简写
+                deque.push(map.get(yuNum));
             }
             int t = chuNum;
             chuNum = chuNum/16;
             yuNum = t%16;
             if (chuNum == 0){
-                deque.addFirst(Integer.toString(yuNum));
+                deque.push(Integer.toString(yuNum));
             }
         }while(chuNum >0);
 //        将队列转换为string
-        StringBuilder str = new StringBuilder();
-        for(String key: deque){
-            str.append(key);
+//        StringBuilder str = new StringBuilder();
+//        for(String key: deque){
+//            str.append(key);
+//        }
+//        可以简写为
+        String  str="";
+        while (!deque.isEmpty()){
+           str += deque.pop();
         }
-        System.out.println(deque+"-------------"+str);
         return str.toString();
     }
 
