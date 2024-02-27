@@ -104,75 +104,22 @@ public class Main {
 //        System.out.println(q.peek());
 //        System.out.println(q.peek());
 ////add,remove,element 是抛出异常，其他是返回false或者null
-//        -----------------stack 课后作业---------------------
-//        请利用Stack把一个给定的整数转换为十六进制：
-        String hex = toHex(12500);
-        if (hex.equalsIgnoreCase("30D4")) {
-            System.out.println("测试通过");
-        } else {
-            System.out.println("测试失败");
-        }
-    }
-    static String toHex(int n) {
-//        此处deque代表的是栈，因此变量名最好定义为stack
-//        Deque<String> stack = new LinkedList<>();
-        Deque<String> deque = new LinkedList<>();
-        int chuNum = n/16;
-        int yuNum = n%16;
-        Map<Integer,String> map = Map.of(
-                10,"A",
-                11,"B",
-                12,"C",
-                13,"D",
-                14,"E",
-                15,"F"
-        );
-        do{
-            if(yuNum<10){
-                deque.push(Integer.toString(yuNum));
-            }
-            else {
-//                switch (yuNum){
-//                    case 10:
-//                        deque.push("A");
-//                        break;
-//                    case 11:
-//                        deque.push("B");
-//                        break;
-//                    case 12:
-//                        deque.push("C");
-//                        break;
-//                    case 13:
-//                        deque.push("D");
-//                        break;
-//                    case 14:
-//                        deque.push("E");
-//                        break;
-//                    case 15:
-//                        deque.push("F");
-//                        break;
-//                }
-//                可以简写
-                deque.push(map.get(yuNum));
-            }
-            int t = chuNum;
-            chuNum = chuNum/16;
-            yuNum = t%16;
-            if (chuNum == 0){
-                deque.push(Integer.toString(yuNum));
-            }
-        }while(chuNum >0);
-//        将队列转换为string
-//        StringBuilder str = new StringBuilder();
-//        for(String key: deque){
-//            str.append(key);
-//        }
-//        可以简写为
-        String  str="";
-        while (!deque.isEmpty()){
-           str += deque.pop();
-        }
-        return str.toString();
+//学习collections
+//        创建空集合
+        List<String> string = new ArrayList<>();
+        string.add("11");
+        string.add("dd");
+        string.add("aa");
+//        可以对list排序
+        Collections.sort(string);
+        System.out.println(string);
+//        提供洗牌算法，打乱list顺序
+        Collections.shuffle(string);
+        System.out.println(string);
+//        可将集合封装成不可变
+        List<String> imString = Collections.unmodifiableList(string);
+        imString = null;
+        System.out.println(imString);
     }
 
 }
