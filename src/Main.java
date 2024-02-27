@@ -68,35 +68,21 @@ public class Main {
 //            Integer value = entry.getValue();
 //            System.out.println(key+"="+value);
 //        }
-//        学习enumMap
-        Map<DayOfWeek, String> map = new EnumMap<>(DayOfWeek.class);
-        map.put(DayOfWeek.MONDAY, "星期一");
-        map.put(DayOfWeek.TUESDAY, "星期二");
-        map.put(DayOfWeek.WEDNESDAY, "星期三");
-        map.put(DayOfWeek.THURSDAY, "星期四");
-        map.put(DayOfWeek.FRIDAY, "星期五");
-        map.put(DayOfWeek.SATURDAY, "星期六");
-        map.put(DayOfWeek.SUNDAY, "星期日");
-        System.out.println(map);
-        System.out.println(map.get(DayOfWeek.MONDAY));
-//        学习Treemap
-        Map<String,Integer> mapTree = new TreeMap<>();
-        mapTree.put("a",1);
-        mapTree.put("c",3);
-        mapTree.put("b",2);
-        for (String key: mapTree.keySet()){
-            System.out.println(key);
-            System.out.println(mapTree.get(key));
-        }
+//  学习hashset
+        Set<String> set =  new HashSet<>();
+        set.add("ad");
+        set.add("bb");
+        set.add("ab");
+        System.out.println( set.contains("bb"));
+        System.out.println(set.remove("ab"));
+        System.out.println(set.size());
+        System.out.println(set);
+//        //学习tressset和treemap类似，是有序的
+        Set<String> setTree = new TreeSet<>();
+        setTree.add("ad");
+        setTree.add("bb");
+        setTree.add("ab");
+        System.out.println(setTree);
     }
 }
-
-//class Student{
-//    public String name;
-//    public int score;
-//    public Student(String name,int score){
-//        this.name = name;
-//        this.score = score;
-//    }
-//}
 
