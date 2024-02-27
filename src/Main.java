@@ -69,20 +69,73 @@ public class Main {
 //            System.out.println(key+"="+value);
 //        }
 //  学习hashset
-        Set<String> set =  new HashSet<>();
-        set.add("ad");
-        set.add("bb");
-        set.add("ab");
-        System.out.println( set.contains("bb"));
-        System.out.println(set.remove("ab"));
-        System.out.println(set.size());
-        System.out.println(set);
-//        //学习tressset和treemap类似，是有序的
-        Set<String> setTree = new TreeSet<>();
-        setTree.add("ad");
-        setTree.add("bb");
-        setTree.add("ab");
-        System.out.println(setTree);
+//        Set<String> set =  new HashSet<>();
+//        set.add("ad");
+//        set.add("bb");
+//        set.add("ab");
+//        System.out.println( set.contains("bb"));
+//        System.out.println(set.remove("ab"));
+//        System.out.println(set.size());
+//        System.out.println(set);
+////        //学习tressset和treemap类似，是有序的
+//        Set<String> setTree = new TreeSet<>();
+//        setTree.add("ad");
+//        setTree.add("bb");
+//        setTree.add("ab");
+//        System.out.println(setTree);
+//        ------------set 作业-------------
+        List<Message> received = List.of(
+                new Message(2, "发工资了吗？"),
+                new Message(2, "发工资了吗？"),
+                new Message(1, "Hello!"),
+                new Message(1, "Hello!"),
+                new Message(3, "去哪吃饭？"),
+                new Message(3, "去哪吃饭？"),
+                new Message(4, "Bye")
+        );
+        List<Message> displayMessages = process(received);
+        for (Message message : displayMessages) {
+            System.out.println(message.text);
+        }
+    }
+
+    static List<Message> process(List<Message> received) {
+        // TODO: 按sequence去除重复消息
+//        ----自己的方法--------
+//        Set<String> messageSet = new HashSet<>();
+//        List<Message> result = new ArrayList<>();
+//        for (Message it : received){
+//            if(!messageSet.contains(it.text)){
+//                messageSet.add(it.text);
+//                result.add(it);
+//            }
+//
+//        }
+//        return result;
+//        ---------更健壮用treeset更合适---------
+        Set<Message> set = new TreeSet<>(new Comparator<Message>() {
+            @Override
+            public int compare(Message o1, Message o2) {
+//                if(o1.sequence < o2.sequence){
+//                    return -1;
+//                } else if (o1.sequence > o2.sequence) {
+//                    return 1;
+//                }
+//                return 0;
+                return o1.sequence - o2.sequence;
+            }
+        });
+        set.addAll(received);
+        return new ArrayList<Message>(set);
+    }
+    }
+
+
+class Message {
+    public final int sequence;
+    public final String text;
+    public Message(int sequence, String text) {
+        this.sequence = sequence;
+        this.text = text;
     }
 }
-
