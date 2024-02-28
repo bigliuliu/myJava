@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67fe77ac-fa68-457f-9bc6-c5e34b7099e5" name="Changes" comment="add: 学习创建线程">
+    <list default="true" id="67fe77ac-fa68-457f-9bc6-c5e34b7099e5" name="Changes" comment="add: 学习守护线程，中断线程">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/myJava/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/myJava/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -121,13 +121,22 @@
       <option name="project" value="LOCAL" />
       <updated>1709104497291</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add: 学习守护线程，中断线程">
+      <option name="closed" value="true" />
+      <created>1709107170934</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709107170934</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed printf to println" />
     <MESSAGE value="update workspace.xml" />
     <MESSAGE value="add: 学习创建线程" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: 学习创建线程" />
+    <MESSAGE value="add: 学习守护线程，中断线程" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: 学习守护线程，中断线程" />
   </component>
 </project>

@@ -1,30 +1,63 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.*;
-import java.time.DayOfWeek;
-import java.util.Objects;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * Learn Java from https://www.liaoxuefeng.com/
+ *
+ * @author liaoxuefeng
+ */
 public class Main {
-    public static void main(String[] args) throws InterruptedException{
-        HelloThread t = new HelloThread();
-//        这是要给守护线程
-         t.setDaemon(true);
-        t.start();
-        Thread.sleep(1);
-        t.running = false; // 标志位置为false
+
+    static final Object LOCK_A = new Object();
+    static final Object LOCK_B = new Object();
+
+    public static void main(String[] args) {
+        new Thread1().start();
+        new Thread2().start();
+    }
+
+    static void sleep1s() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
-class HelloThread extends Thread {
-//    volatile是线程间共享的关键字标记
-    public volatile boolean running = true;
+
+class Thread1 extends Thread {
+
     public void run() {
-        int n = 0;
-        while (running) {
-            n ++;
-            System.out.println(n + " hello!");
+        System.out.println("Thread-1: try get lock A...");
+        synchronized (Main.LOCK_A) {
+            System.out.println("Thread-1: lock A got.");
+            Main.sleep1s();
+            System.out.println("Thread-1: try get lock B...");
+            synchronized (Main.LOCK_B) {
+                System.out.println("Thread-1: lock B got.");
+                Main.sleep1s();
+            }
+            System.out.println("Thread-1: lock B released.");
         }
-        System.out.println("end!");
+        System.out.println("Thread-1: lock A released.");
+    }
+}
+
+class Thread2 extends Thread {
+
+    public void run() {
+        System.out.println("Thread-2: try get lock B...");
+//        synchronized (Main.LOCK_B) {
+
+            synchronized (Main.LOCK_A) {
+                System.out.println("Thread-2: lock A got.");
+                Main.sleep1s();
+                synchronized (Main.LOCK_B){
+                    System.out.println("Thread-2: lock B got.");
+                    Main.sleep1s();
+                    System.out.println("Thread-2: try get lock A...");
+                }
+                System.out.println("Thread-2: lock A released.");
+            }
+
+//        }
+        System.out.println("Thread-2: lock B released.");
     }
 }
