@@ -1,63 +1,57 @@
-/**
- * Learn Java from https://www.liaoxuefeng.com/
- *
- * @author liaoxuefeng
- */
+import java.util.*;
 public class Main {
-
-    static final Object LOCK_A = new Object();
-    static final Object LOCK_B = new Object();
-
-    public static void main(String[] args) {
-        new Thread1().start();
-        new Thread2().start();
-    }
-
-    static void sleep1s() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-class Thread1 extends Thread {
-
-    public void run() {
-        System.out.println("Thread-1: try get lock A...");
-        synchronized (Main.LOCK_A) {
-            System.out.println("Thread-1: lock A got.");
-            Main.sleep1s();
-            System.out.println("Thread-1: try get lock B...");
-            synchronized (Main.LOCK_B) {
-                System.out.println("Thread-1: lock B got.");
-                Main.sleep1s();
-            }
-            System.out.println("Thread-1: lock B released.");
-        }
-        System.out.println("Thread-1: lock A released.");
-    }
-}
-
-class Thread2 extends Thread {
-
-    public void run() {
-        System.out.println("Thread-2: try get lock B...");
-//        synchronized (Main.LOCK_B) {
-
-            synchronized (Main.LOCK_A) {
-                System.out.println("Thread-2: lock A got.");
-                Main.sleep1s();
-                synchronized (Main.LOCK_B){
-                    System.out.println("Thread-2: lock B got.");
-                    Main.sleep1s();
-                    System.out.println("Thread-2: try get lock A...");
+    public static void main(String[] args) throws InterruptedException {
+        var q = new TaskQueue();
+        var ts = new ArrayList<Thread>();
+        for (int i=0; i<5; i++) {
+            var t = new Thread() {
+                public void run() {
+                    // 执行task:
+                    while (true) {
+                        try {
+                            String s = q.getTask();
+                            System.out.println("execute task: " + s);
+                        } catch (InterruptedException e) {
+                            return;
+                        }
+                    }
                 }
-                System.out.println("Thread-2: lock A released.");
+            };
+            t.start();
+            ts.add(t);
+        }
+        var add = new Thread(() -> {
+            for (int i=0; i<10; i++) {
+                // 放入task:
+                String s = "t-" + Math.random();
+                System.out.println("add task: " + s);
+                q.addTask(s);
+                try { Thread.sleep(100); } catch(InterruptedException e) {}
             }
+        });
+        add.start();
+        add.join();
+        Thread.sleep(100);
+        for (var t : ts) {
+            t.interrupt();
+        }
+    }
+}
 
-//        }
-        System.out.println("Thread-2: lock B released.");
+class TaskQueue {
+    Queue<String> queue = new LinkedList<>();
+
+    public synchronized void addTask(String s) {
+        this.queue.add(s);
+//        唤醒等待中的线程
+        this.notifyAll();
+    }
+
+    public synchronized String getTask() throws InterruptedException {
+        while (queue.isEmpty()) {
+//            使得当前线程处于等待中，并且可以释放this 锁
+            this.wait();
+        }
+        return queue.remove();
     }
 }
