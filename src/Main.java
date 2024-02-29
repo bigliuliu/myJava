@@ -1,5 +1,5 @@
-package com.itranswarp.learnjava;
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.*;
 
 /**
@@ -8,43 +8,32 @@ import java.util.concurrent.*;
  * @author liaoxuefeng
  */
 public class Main {
-    public static void main(String[] args) {
-//        创建固定的四个线程
-//        ExecutorService es = Executors.newFixedThreadPool(4);
-//        指定动态范围的线程池
-//        int min =4;
-//        int max = 10;
-//        ExecutorService es = new ThreadPoolExecutor(min,max,60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
-//        创建定时器线程池
-        ScheduledExecutorService es = Executors.newScheduledThreadPool(4);
-//        1s 后执行一次任务
-//        es.schedule(new Task("one-time"),1,TimeUnit.SECONDS);
-//        2s后开始执行定时任务，每3s执行
-//        es.scheduleAtFixedRate(new Task("fixed-rate"),2,3,TimeUnit.SECONDS);
-//        2s后开始执行定时任务，以3s为间隔执行
-        es.scheduleWithFixedDelay(new Task("fixed-delay"),2,3,TimeUnit.SECONDS);
-        for (int i = 0; i < 6; i++) {
-            es.submit(new Task("" + i));
-        }
+    public static void main(String[] args) throws Exception {
+        ExecutorService es = Executors.newFixedThreadPool(4);
+        Future<BigDecimal> future = es.submit(new Task("601857"));
+//        获取future结果
+        System.out.println(future.get()+"0000"+future.isDone());
+//       获取结果，但是等待指定时间
+//        System.out.println(future.get(100, TimeUnit.SECONDS));
+        future.cancel(true);
+        System.out.println(future.get()+"1111111111"+future.isDone());
         es.shutdown();
+        System.out.println(future.get()+"222222222"+future.isDone());
+        if (es.isShutdown()){
+            System.out.println("end----");
+        }
     }
 }
 
-class Task implements Runnable {
+class Task implements Callable<BigDecimal> {
 
-    private final String name;
-
-    public Task(String name) {
-        this.name = name;
+    public Task(String code) {
     }
 
     @Override
-    public void run() {
-        System.out.println("start task " + name);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        }
-        System.out.println("end task " + name);
+    public BigDecimal call() throws Exception {
+        Thread.sleep(1000);
+        double d = 5 + Math.random() * 20;
+        return new BigDecimal(d).setScale(2, RoundingMode.DOWN);
     }
 }
