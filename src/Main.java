@@ -1,57 +1,50 @@
-import java.util.*;
+package com.itranswarp.learnjava;
+
+import java.util.concurrent.*;
+
+/**
+ * Learn Java from https://www.liaoxuefeng.com/
+ *
+ * @author liaoxuefeng
+ */
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        var q = new TaskQueue();
-        var ts = new ArrayList<Thread>();
-        for (int i=0; i<5; i++) {
-            var t = new Thread() {
-                public void run() {
-                    // 执行task:
-                    while (true) {
-                        try {
-                            String s = q.getTask();
-                            System.out.println("execute task: " + s);
-                        } catch (InterruptedException e) {
-                            return;
-                        }
-                    }
-                }
-            };
-            t.start();
-            ts.add(t);
+    public static void main(String[] args) {
+//        创建固定的四个线程
+//        ExecutorService es = Executors.newFixedThreadPool(4);
+//        指定动态范围的线程池
+//        int min =4;
+//        int max = 10;
+//        ExecutorService es = new ThreadPoolExecutor(min,max,60L, TimeUnit.SECONDS,new SynchronousQueue<Runnable>());
+//        创建定时器线程池
+        ScheduledExecutorService es = Executors.newScheduledThreadPool(4);
+//        1s 后执行一次任务
+//        es.schedule(new Task("one-time"),1,TimeUnit.SECONDS);
+//        2s后开始执行定时任务，每3s执行
+//        es.scheduleAtFixedRate(new Task("fixed-rate"),2,3,TimeUnit.SECONDS);
+//        2s后开始执行定时任务，以3s为间隔执行
+        es.scheduleWithFixedDelay(new Task("fixed-delay"),2,3,TimeUnit.SECONDS);
+        for (int i = 0; i < 6; i++) {
+            es.submit(new Task("" + i));
         }
-        var add = new Thread(() -> {
-            for (int i=0; i<10; i++) {
-                // 放入task:
-                String s = "t-" + Math.random();
-                System.out.println("add task: " + s);
-                q.addTask(s);
-                try { Thread.sleep(100); } catch(InterruptedException e) {}
-            }
-        });
-        add.start();
-        add.join();
-        Thread.sleep(100);
-        for (var t : ts) {
-            t.interrupt();
-        }
+        es.shutdown();
     }
 }
 
-class TaskQueue {
-    Queue<String> queue = new LinkedList<>();
+class Task implements Runnable {
 
-    public synchronized void addTask(String s) {
-        this.queue.add(s);
-//        唤醒等待中的线程
-        this.notifyAll();
+    private final String name;
+
+    public Task(String name) {
+        this.name = name;
     }
 
-    public synchronized String getTask() throws InterruptedException {
-        while (queue.isEmpty()) {
-//            使得当前线程处于等待中，并且可以释放this 锁
-            this.wait();
+    @Override
+    public void run() {
+        System.out.println("start task " + name);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
         }
-        return queue.remove();
+        System.out.println("end task " + name);
     }
 }
