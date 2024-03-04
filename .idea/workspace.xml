@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="67fe77ac-fa68-457f-9bc6-c5e34b7099e5" name="Changes" comment="add：学习线程池">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "bigliuliu"
+  }
+}]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d86478e3-1566-48b0-a110-3ca7bfb6bc7a" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="d86478e3-1566-48b0-a110-3ca7bfb6bc7a" />
+        <option name="url" value="https://github.com/bigliuliu/myJava.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ct2FouzcMCBoh4Zfs4Towu6gQA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.learnList.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "git-widget-placeholder": "basicLearn",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67fe77ac-fa68-457f-9bc6-c5e34b7099e5" name="Changes" comment="" />
+      <created>1708916700145</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708916700145</updated>
+    </task>
+    <task id="LOCAL-00001" summary="fixed printf to println">
+      <option name="closed" value="true" />
+      <created>1708918780607</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708918780607</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update workspace.xml">
+      <option name="closed" value="true" />
+      <created>1708919494299</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708919494299</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add: 学习创建线程">
+      <option name="closed" value="true" />
+      <created>1709104497291</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709104497291</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add: 学习守护线程，中断线程">
+      <option name="closed" value="true" />
+      <created>1709107170934</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709107170934</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add: 修复死锁作业：保证不同的线程获取不同锁的顺序一致，可以避免死锁">
+      <option name="closed" value="true" />
+      <created>1709110712160</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709110712160</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add: 学习wait和notify">
+      <option name="closed" value="true" />
+      <created>1709112479379</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709112479379</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add：wait和notify用于多线程协调运行">
+      <option name="closed" value="true" />
+      <created>1709112566599</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709112566599</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add：学习线程池">
+      <option name="closed" value="true" />
+      <created>1709191430977</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709191430977</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed printf to println" />
+    <MESSAGE value="update workspace.xml" />
+    <MESSAGE value="add: 学习创建线程" />
+    <MESSAGE value="add: 学习守护线程，中断线程" />
+    <MESSAGE value="add: 修复死锁作业：保证不同的线程获取不同锁的顺序一致，可以避免死锁" />
+    <MESSAGE value="add: 学习wait和notify" />
+    <MESSAGE value="add：wait和notify用于多线程协调运行" />
+    <MESSAGE value="add：学习线程池" />
+    <option name="LAST_COMMIT_MESSAGE" value="add：学习线程池" />
+  </component>
+</project>

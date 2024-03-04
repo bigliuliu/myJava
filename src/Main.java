@@ -1,15 +1,39 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!");
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.concurrent.*;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+/**
+ * Learn Java from https://www.liaoxuefeng.com/
+ *
+ * @author liaoxuefeng
+ */
+public class Main {
+    public static void main(String[] args) throws Exception {
+        ExecutorService es = Executors.newFixedThreadPool(4);
+        Future<BigDecimal> future = es.submit(new Task("601857"));
+//        获取future结果
+        System.out.println(future.get()+"0000"+future.isDone());
+//       获取结果，但是等待指定时间
+//        System.out.println(future.get(100, TimeUnit.SECONDS));
+        future.cancel(true);
+        System.out.println(future.get()+"1111111111"+future.isDone());
+        es.shutdown();
+        System.out.println(future.get()+"222222222"+future.isDone());
+        if (es.isShutdown()){
+            System.out.println("end----");
         }
+    }
+}
+
+class Task implements Callable<BigDecimal> {
+
+    public Task(String code) {
+    }
+
+    @Override
+    public BigDecimal call() throws Exception {
+        Thread.sleep(1000);
+        double d = 5 + Math.random() * 20;
+        return new BigDecimal(d).setScale(2, RoundingMode.DOWN);
     }
 }
